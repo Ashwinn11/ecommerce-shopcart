@@ -39,4 +39,10 @@ public class CategoryController {
         service.updateCategory(id,category);
         return new ResponseEntity<>(new ApiResponse(true,"Updated successfully"),HttpStatus.ACCEPTED);
     }
+    @DeleteMapping("/remove/{id}")
+    public ResponseEntity<ApiResponse> deleteById(@PathVariable Integer id ){
+        service.deleteCategory(id);
+        return new ResponseEntity<>(new ApiResponse(true,"Deleted successfully"),HttpStatus.ACCEPTED);
+    }
+
 }

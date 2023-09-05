@@ -7,7 +7,6 @@ import com.ecommerce.shopcart.repository.CategoryRepository;
 import com.ecommerce.shopcart.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -35,5 +34,22 @@ public class ProductService {
 
     public Optional<Product> listById(Integer id) {
         return productRepository.findById(id);
+    }
+
+    public boolean findById(Integer id){
+        return productRepository.findById(id).isPresent();
+    }
+
+    public void update(Integer id, ProductDto productDto) throws Exception {
+        Optional<Product> updated = productRepository.findById(id);
+        if(updated.isEmpty()){
+            throw new Exception("Product not found");
+        }
+        Product product = updated.get();
+        product.setDescription(productDto.getDescription());
+        product.setImageUrl(productDto.getImageUrl());
+        product.setName(productDto.getName());
+        product.setPrice(product.getPrice());
+        productRepository.save(product);
     }
 }

@@ -38,4 +38,8 @@ public class CategoryService {
     public boolean findById(Integer id) {
         return repository.findById(id).isPresent();
     }
+
+    public void deleteCategory(Integer id) {
+        repository.deleteById(id);
+    }
 }

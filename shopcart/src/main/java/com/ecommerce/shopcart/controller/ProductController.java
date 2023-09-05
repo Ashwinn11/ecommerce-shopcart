@@ -1,5 +1,4 @@
 package com.ecommerce.shopcart.controller;
-
 import com.ecommerce.shopcart.dto.ProductDto;
 import com.ecommerce.shopcart.model.ApiResponse;
 import com.ecommerce.shopcart.model.Category;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +30,6 @@ public class ProductController {
         productService.create(product,category.get());
         return new ResponseEntity<>(new ApiResponse(true,"Product created"),HttpStatus.CREATED);
     }
-
     @GetMapping("/products")
     public List<Product> listProducts(){
         return productService.list();
@@ -41,6 +38,14 @@ public class ProductController {
     @GetMapping("/{id}")
     public Optional<Product> listById(@PathVariable Integer id){
         return productService.listById(id);
+    }
+    @PutMapping("/add-product/{id}")
+    public ResponseEntity<ApiResponse> updateProduct(@PathVariable Integer id , @RequestBody ProductDto productDto) throws Exception {
+        if(!categoryService.findById(productDto.getCategoryId())){
+            return new ResponseEntity<>(new ApiResponse(false,"Category not exits!"),HttpStatus.NOT_FOUND);
+        }
+        productService.update(id,productDto);
+        return new ResponseEntity<>(new ApiResponse(true,"Product updated successfully!"),HttpStatus.ACCEPTED);
     }
 
 
