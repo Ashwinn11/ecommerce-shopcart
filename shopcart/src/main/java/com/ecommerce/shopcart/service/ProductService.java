@@ -49,7 +49,11 @@ public class ProductService {
         product.setDescription(productDto.getDescription());
         product.setImageUrl(productDto.getImageUrl());
         product.setName(productDto.getName());
-        product.setPrice(product.getPrice());
+        product.setPrice(productDto.getPrice());
         productRepository.save(product);
+    }
+
+    public void delete(Integer id) {
+        productRepository.deleteById(id);
     }
 }

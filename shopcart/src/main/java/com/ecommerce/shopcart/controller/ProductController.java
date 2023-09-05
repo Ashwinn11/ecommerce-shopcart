@@ -1,6 +1,6 @@
 package com.ecommerce.shopcart.controller;
 import com.ecommerce.shopcart.dto.ProductDto;
-import com.ecommerce.shopcart.model.ApiResponse;
+import com.ecommerce.shopcart.response.ApiResponse;
 import com.ecommerce.shopcart.model.Category;
 import com.ecommerce.shopcart.model.Product;
 import com.ecommerce.shopcart.service.CategoryService;
@@ -47,6 +47,13 @@ public class ProductController {
         productService.update(id,productDto);
         return new ResponseEntity<>(new ApiResponse(true,"Product updated successfully!"),HttpStatus.ACCEPTED);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ApiResponse> deleteByID(@PathVariable Integer id){
+        productService.delete(id);
+        return new ResponseEntity<>(new ApiResponse(true,"Deleted"),HttpStatus.ACCEPTED);
+    }
+
 
 
 

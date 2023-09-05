@@ -1,4 +1,4 @@
-package com.ecommerce.shopcart.model;
+package com.ecommerce.shopcart.response;
 
 import lombok.Data;
 

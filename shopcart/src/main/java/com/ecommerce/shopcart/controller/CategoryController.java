@@ -1,6 +1,6 @@
 package com.ecommerce.shopcart.controller;
 
-import com.ecommerce.shopcart.model.ApiResponse;
+import com.ecommerce.shopcart.response.ApiResponse;
 import com.ecommerce.shopcart.model.Category;
 import com.ecommerce.shopcart.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
