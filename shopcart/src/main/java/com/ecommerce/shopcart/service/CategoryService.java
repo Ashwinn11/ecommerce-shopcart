@@ -2,9 +2,7 @@ package com.ecommerce.shopcart.service;
 
 import com.ecommerce.shopcart.model.Category;
 import com.ecommerce.shopcart.repository.CategoryRepository;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

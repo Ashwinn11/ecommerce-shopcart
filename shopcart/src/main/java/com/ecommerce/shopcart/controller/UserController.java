@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    public UserService userService;
+    private UserService userService;
     @PostMapping("/create")
     public ResponseDto signup(@RequestBody SignUpDto signUpDto){
         return userService.create(signUpDto);

@@ -8,7 +8,6 @@ import com.ecommerce.shopcart.model.User;
 import com.ecommerce.shopcart.repository.UserRepository;
 import com.ecommerce.shopcart.response.ResponseDto;
 import jakarta.xml.bind.DatatypeConverter;
-import org.antlr.v4.runtime.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.security.MessageDigest;
@@ -17,10 +16,10 @@ import java.util.Objects;
 @Service
 public class UserService {
     @Autowired
-    public UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public TokenService tokenService;
+    private TokenService tokenService;
     public ResponseDto create(SignUpDto signUpDto) {
         if(Objects.nonNull(userRepository.findByEmail(signUpDto.getEmail()))){
             throw new CustomException("User already exists!");
