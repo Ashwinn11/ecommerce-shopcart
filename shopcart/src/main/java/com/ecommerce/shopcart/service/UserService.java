@@ -10,6 +10,7 @@ import com.ecommerce.shopcart.response.ResponseDto;
 import jakarta.xml.bind.DatatypeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
@@ -20,6 +21,7 @@ public class UserService {
 
     @Autowired
     private TokenService tokenService;
+    @Transactional
     public ResponseDto create(SignUpDto signUpDto) {
         if(Objects.nonNull(userRepository.findByEmail(signUpDto.getEmail()))){
             throw new CustomException("User already exists!");
@@ -61,7 +63,7 @@ public class UserService {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        AuthenticationToken token = tokenService.generateToken(user);
+        AuthenticationToken token = tokenService.validateToken(user);
         if(Objects.isNull(token)){
             throw  new CustomException("Token is not available");
         }

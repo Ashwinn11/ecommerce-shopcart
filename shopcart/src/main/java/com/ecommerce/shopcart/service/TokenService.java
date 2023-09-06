@@ -11,8 +11,8 @@ public class TokenService{
     @Autowired
     private TokenRepository tokenRepository;
 
-    public AuthenticationToken generateToken(User user) {
-        return tokenRepository.findByEmail(user);
+    public AuthenticationToken validateToken(User user) {
+        return tokenRepository.findByUser(user);
     }
 
     public void saveToken(AuthenticationToken token) {

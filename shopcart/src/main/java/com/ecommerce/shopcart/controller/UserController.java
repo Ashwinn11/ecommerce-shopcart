@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private UserService userService;
-    @PostMapping("/create")
+    @PostMapping("/sing-up")
     public ResponseDto signup(@RequestBody SignUpDto signUpDto){
         return userService.create(signUpDto);
     }
-    @PostMapping("/signin")
+    @PostMapping("/sign-in")
     public ResponseDto signin(@RequestBody SigninDto signinDto){
         return userService.validate(signinDto);
     }
