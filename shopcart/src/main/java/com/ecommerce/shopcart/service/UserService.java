@@ -58,7 +58,7 @@ public class UserService {
 
         try {
             if(!user.getPassword().equals(hashPassword(signinDto.getPassword()))){
-                throw new CustomException("Password not valid");
+                throw new CustomException("User not found");
             }
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();

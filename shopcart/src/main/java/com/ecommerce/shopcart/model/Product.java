@@ -1,5 +1,6 @@
 package com.ecommerce.shopcart.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -20,6 +21,7 @@ public class Product {
     private @NotNull double price;
     private @NotNull String name;
     @ManyToOne
+    @JsonIgnore
             @JoinColumn(name = "category_id")
     Category category;
 }
