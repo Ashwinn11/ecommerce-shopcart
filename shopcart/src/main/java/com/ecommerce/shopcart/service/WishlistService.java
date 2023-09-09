@@ -18,6 +18,7 @@ public class WishlistService {
     }
 
     public List<Wishlist> display(User user) {
-        return wishlistRepository.findAll();
+        Integer id = user.getId();
+        return wishlistRepository.findByUserId(id);
     }
 }

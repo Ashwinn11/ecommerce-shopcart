@@ -9,11 +9,11 @@ import lombok.RequiredArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
-@Data
 @Entity
-@AllArgsConstructor
+@Data
 @RequiredArgsConstructor
-public class Wishlist {
+@AllArgsConstructor
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,12 +22,10 @@ public class Wishlist {
     @JoinColumn(name = "userId")
     @JsonIgnore
     private User user;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "productId")
     private Product product;
-    public Wishlist(Product product, User user) {
-        this.product = product;
-        this.user = user;
-        this.createdDate = new Date();
-    }
+    private Integer quantity;
+
+
 }

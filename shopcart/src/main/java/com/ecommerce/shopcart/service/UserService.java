@@ -21,7 +21,6 @@ public class UserService {
 
     @Autowired
     private TokenService tokenService;
-    @Transactional
     public ResponseDto create(SignUpDto signUpDto) {
         if(Objects.nonNull(userRepository.findByEmail(signUpDto.getEmail()))){
             throw new CustomException("User already exists!");

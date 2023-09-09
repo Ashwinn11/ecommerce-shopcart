@@ -31,7 +31,7 @@ public class ProductController {
         return new ResponseEntity<>(new ApiResponse(true,"Product created"),HttpStatus.CREATED);
     }
     @GetMapping("/products")
-    public List<Product> listProducts(){
+    public Iterable<Product> listProducts(){
         return productService.list();
     }
 

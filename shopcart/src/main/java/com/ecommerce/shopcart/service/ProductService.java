@@ -28,7 +28,7 @@ public class ProductService {
         productRepository.save(product1);
     }
 
-    public List<Product> list() {
+    public Iterable<Product> list() {
         return productRepository.findAll();
     }
 
