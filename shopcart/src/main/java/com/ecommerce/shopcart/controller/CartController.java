@@ -1,6 +1,7 @@
 package com.ecommerce.shopcart.controller;
 
 import com.ecommerce.shopcart.dto.AddCartDto;
+import com.ecommerce.shopcart.dto.CartDto;
 import com.ecommerce.shopcart.model.User;
 import com.ecommerce.shopcart.response.ApiResponse;
 import com.ecommerce.shopcart.service.CartService;
@@ -22,6 +23,12 @@ public class CartController {
         tokenService.authenticate(token);
         User user = tokenService.getUser(token);
         return cartService.manageCart(addCartDto,user);
+    }
+    @GetMapping("/list-cart")
+    public CartDto getItems(@RequestParam String token){
+        tokenService.authenticate(token);
+        User user = tokenService.getUser(token);
+        return cartService.getCart(user);
     }
 
 }

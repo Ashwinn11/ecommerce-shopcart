@@ -1,6 +1,8 @@
 package com.ecommerce.shopcart.service;
 
 import com.ecommerce.shopcart.dto.AddCartDto;
+import com.ecommerce.shopcart.dto.CartDto;
+import com.ecommerce.shopcart.dto.CartItems;
 import com.ecommerce.shopcart.exceptions.CustomException;
 import com.ecommerce.shopcart.model.Cart;
 import com.ecommerce.shopcart.model.Product;
@@ -13,10 +15,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CartService {
@@ -37,5 +36,21 @@ public class CartService {
         cart.setCreatedDate(new Date());
         cartRepository.save(cart);
         return new ResponseEntity<>(new ApiResponse(true,"Cart created"), HttpStatus.ACCEPTED);
+    }
+
+    public CartDto getCart(User user) {
+        List<Cart> cartList = cartRepository.findAllByUserOrderByCreatedDateDesc(user);
+        List<CartItems> cartItems = new ArrayList<>();
+        double totalPrice =0;
+        for ( Cart cart : cartList){
+            CartItems cartItems1 = new CartItems(cart);
+            totalPrice +=cartItems1.getQuantity()*cartItems1.getProductDto().getPrice();
+            cartItems.add(cartItems1);
+        }
+        CartDto cartDto = new CartDto();
+        cartDto.setTotalPrice(totalPrice);
+        cartDto.setCartItems(cartItems);
+        return cartDto;
+
     }
 }
