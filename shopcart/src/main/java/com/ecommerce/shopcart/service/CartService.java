@@ -53,4 +53,14 @@ public class CartService {
         return cartDto;
 
     }
+
+    public void deleteCartItems(User user, Integer id) {
+        Optional<Cart> cart = cartRepository.findById(id);
+        Cart cartItem = cart.get();
+        if (cartItem.getUser()!=user){
+            throw new CustomException("Cart item deletion not valid");
+        }
+        cartRepository.delete(cartItem);
+
+    }
 }

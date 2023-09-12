@@ -7,6 +7,7 @@ import com.ecommerce.shopcart.response.ApiResponse;
 import com.ecommerce.shopcart.service.CartService;
 import com.ecommerce.shopcart.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,13 @@ public class CartController {
         tokenService.authenticate(token);
         User user = tokenService.getUser(token);
         return cartService.getCart(user);
+    }
+    @DeleteMapping("/delete/{cartItemId}")
+    public ResponseEntity<ApiResponse> deleteById(@PathVariable("/cartItemId") Integer id , @RequestParam String token){
+        tokenService.authenticate(token);
+        User user = tokenService.getUser(token);
+        cartService.deleteCartItems(user,id);
+        return new ResponseEntity<>(new ApiResponse(true,"Deleted successfully"), HttpStatus.OK);
     }
 
 }
