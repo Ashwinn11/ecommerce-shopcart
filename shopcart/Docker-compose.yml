@@ -17,6 +17,11 @@ services:
        ADMINER_DEFAULT_SERVER: mysql_db_container
      ports:
        - 8081:8080
-
+   shopcart-service:
+     image: ashwiin11/shopcart:latest
+     ports:
+       - 1430:8080
+     depends_on:
+      - mysql_db_container
 volumes:
    mysql_db_data_container:
