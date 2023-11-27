@@ -1,15 +1,13 @@
-version: '3.7'
+version: "3.8"
 services:
    mysql-db-container:
      image: mysql:latest
-     command: --default-authentication-plugin=mysql_native_password
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: database
-       MYSQL_USER: root
        MYSQL_DATABASE: ecommerce
      ports:
-       - 3306:3306
+       - "3307:3306"
      volumes:
        - mysql_db_data_container:/var/lib/mysql
    adminer-container:
@@ -18,12 +16,6 @@ services:
      environment:
        ADMINER_DEFAULT_SERVER: mysql-db-container
      ports:
-       - 8080:8080
-   shopcart-service:
-     image: ashwiin11/shopcart:latest
-     ports:
-       - 1430:8080
-     depends_on:
-      - mysql-db-container
+       - "8081:8080"
 volumes:
    mysql_db_data_container:
