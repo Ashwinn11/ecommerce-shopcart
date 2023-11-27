@@ -10,7 +10,7 @@ services:
        - 3307:3306
      volumes:
        - mysql_db_data_container:/var/lib/mysql
-   adminer_container:
+   adminer-container:
      image: adminer:latest
      restart: always
      environment:
@@ -22,6 +22,6 @@ services:
      ports:
        - 1430:8080
      depends_on:
-      - mysql_db_container
+      - mysql-db-container
 volumes:
    mysql_db_data_container:
